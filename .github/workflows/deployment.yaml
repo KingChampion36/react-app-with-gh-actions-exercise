@@ -3,47 +3,17 @@ on:
   push:
     branches: [ master ]
 jobs:
-  lint:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: Install nodejs
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
       - name: Install dependencies
         run: npm ci
-      - name: Configure ES Lint
-        run: npm init @eslint/config
       - name: Lint
         run: npm run lint
-  test:
-    needs: lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Install nodejs
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Install dependencies
-        run: npm ci
       - name: Test
         run: npm test
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Install nodejs
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Install dependencies
-        run: npm ci
       - name: Deploy
         run: |
           echo "Deploying react app..."
