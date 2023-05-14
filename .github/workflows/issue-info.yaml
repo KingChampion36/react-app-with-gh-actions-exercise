@@ -1,0 +1,11 @@
+name: Issue information
+on: issues
+jobs:
+  issue-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print issue information
+        run: |
+          echo "has_issues = ${{ github.event.has_issues }}"
+          echo "open_issues = ${{ github.event.open_issues }}"
+          echo "open_issues_counts = ${{ github.event.open_issues_counts }}"
