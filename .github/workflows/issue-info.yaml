@@ -6,6 +6,4 @@ jobs:
     steps:
       - name: Print issue information
         run: |
-          echo "has_issues = ${{ github.event.has_issues }}"
-          echo "open_issues = ${{ github.event.open_issues }}"
-          echo "open_issues_counts = ${{ github.event.open_issues_counts }}"
+          echo "${{ toJSON(github.event) }}"
